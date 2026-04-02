@@ -1,0 +1,72 @@
+[
+  {
+    "match_no": 1,
+    "match_id": "M1",
+    "date": "2026-03-28",
+    "venue": "Bangalore",
+    "teams": {
+      "team1": "SRH",
+      "team2": "RCB"
+    },
+    "winner": "RCB",
+    "man_of_the_match": {
+      "player": "Jacob Duffy"
+    }
+  },
+  {
+    "match_no": 2,
+    "match_id": "M2",
+    "date": "2026-03-29",
+    "venue": "Mumbai",
+    "teams": {
+      "team1": "KKR",
+      "team2": "MI"
+    },
+    "winner": "MI",
+    "man_of_the_match": {
+      "player": "Shardul Thakur"
+    }
+  },
+  {
+    "match_no": 3,
+    "match_id": "M3",
+    "date": "2026-03-30",
+    "venue": "Guwahati",
+    "teams": {
+      "team1": "CSK",
+      "team2": "RR"
+    },
+    "winner": "RR",
+    "man_of_the_match": {
+      "player": "Nandre Burger"
+    }
+  },
+  {
+    "match_no": 4,
+    "match_id": "M4",
+    "date": "2026-03-31",
+    "venue": "New Chandigarh",
+    "teams": {
+      "team1": "GT",
+      "team2": "PBKS"
+    },
+    "winner": "PBKS",
+    "man_of_the_match": {
+      "player": "Cooper Connolly"
+    }
+  },
+  {
+    "match_no": 5,
+    "match_id": "M5",
+    "date": "2026-04-01",
+    "venue": "Lucknow",
+    "teams": {
+      "team1": "LSG",
+      "team2": "DC"
+    },
+    "winner": "DC",
+    "man_of_the_match": {
+      "player": "Sameer Rizvi"
+    }
+  }
+]
