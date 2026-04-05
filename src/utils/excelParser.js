@@ -58,7 +58,7 @@ export const parseExcelData = (arrayBuffer) => {
       let pointsIdx = -1;
       
       // Look ahead for "IPL Team" and "Points" until the next team header
-      for (let j = i; j < headers.length && (j === i || !headers[j]); j++) {
+      for (let j = i; j < labels.length && (j === i || !headers[j]); j++) {
         if (labels[j] === "IPL Team") iplIdx = j;
         if (labels[j] === "Points") pointsIdx = j;
       }

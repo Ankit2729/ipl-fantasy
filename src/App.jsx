@@ -45,27 +45,27 @@ function App() {
         const now = new Date();
         setLastUpdated(now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         
-        // --- BASELINE DATA (Match 8 Screenshot Standings) ---
-        const BASELINE_MATCH8 = {
+        // --- BASELINE DATA (Match 9 Screenshot Standings) ---
+        const BASELINE_MATCH9 = {
+          "Piyush dhiman's Team": 1468.5,
+          "shabad's Team": 1163.5,
+          "Maat maro shota bacha hu": 1107.5,
           "Jenna Morrh Warriors": 1077,
-          "Piyush dhiman's Team": 1053,
-          "Maat maro shota bacha hu": 1027.5,
-          "shabad's Team": 994,
-          "Sumit's Team": 742.5,
-          "Ankit's Team": 738,
-          "Deepanshuu's Team": 643.5,
-          "Aizen": 605,
-          "GURI XI": 483
+          "Ankit's Team": 927,
+          "Sumit's Team": 864.5,
+          "Deepanshuu's Team": 803.5,
+          "GURI XI": 723,
+          "Aizen": 676
         };
 
-        const INITIAL_RANKS = Object.keys(BASELINE_MATCH8)
-          .sort((a, b) => BASELINE_MATCH8[b] - BASELINE_MATCH8[a])
+        const INITIAL_RANKS = Object.keys(BASELINE_MATCH9)
+          .sort((a, b) => BASELINE_MATCH9[b] - BASELINE_MATCH9[a])
           .map((id, index) => ({ id, rank: index + 1 }));
 
-        // Current totals come directly from the public/data.xlsx (cumulative Match 9)
+        // Current totals come directly from the public/data.xlsx (cumulative Match 10)
         const finalStandings = parsedTeams.map(team => {
           const totalPoints = team.totalPoints;
-          const previousPoints = BASELINE_MATCH8[team.id] || 0;
+          const previousPoints = BASELINE_MATCH9[team.id] || 0;
           return {
             ...team,
             matchPoints: totalPoints - previousPoints,
