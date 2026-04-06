@@ -115,6 +115,8 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
+Ankit Kumar  
+GitHub: https://github.com/Ankit2729  
 Shabad Grover & Ankit Kumar  
 GitHub: https://github.com/shabadgrover/
 https://github.com/Ankit2729  
