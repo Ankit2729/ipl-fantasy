@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Zap } from 'lucide-react';
+import { Calendar, MapPin, Zap, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 const UpcomingMatch = ({ teams, matchInfo, hideInternalHeader }) => {
   if (!matchInfo) return null;
@@ -14,7 +14,10 @@ const UpcomingMatch = ({ teams, matchInfo, hideInternalHeader }) => {
           if (p.iplTeam === iplTeamName) {
             players.push({
               ...p,
-              ownedBy: fTeam.teamName
+              ownedBy: fTeam.teamName,
+              ownerRank: fTeam.rank,
+              ownerTrend: fTeam.trend,
+              ownerRankDiff: fTeam.rankDiff
             });
           }
         });
@@ -88,7 +91,16 @@ const UpcomingMatch = ({ teams, matchInfo, hideInternalHeader }) => {
                 </div>
                 <div className="text-right">
                   <span className="text-[9px] uppercase font-bold text-slate-500 block">Owned By</span>
-                  <span className="text-xs font-black text-primary/80 group-hover:text-primary transition-colors">{player.ownedBy}</span>
+                  <div className="flex items-center justify-end gap-1.5 mt-0.5">
+                    {player.ownerTrend === 'up' ? (
+                      <TrendingUp size={10} className="text-emerald-500" strokeWidth={3} />
+                    ) : player.ownerTrend === 'down' ? (
+                      <TrendingDown size={10} className="text-rose-500" strokeWidth={3} />
+                    ) : (
+                      <Minus size={10} className="text-slate-400" strokeWidth={3} />
+                    )}
+                    <span className="text-xs font-black text-primary/80 group-hover:text-primary transition-colors">{player.ownedBy}</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -118,7 +130,16 @@ const UpcomingMatch = ({ teams, matchInfo, hideInternalHeader }) => {
                 </div>
                 <div className="text-right">
                   <span className="text-[9px] uppercase font-bold text-slate-500 block">Owned By</span>
-                  <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors">{player.ownedBy}</span>
+                  <div className="flex items-center justify-end gap-1.5 mt-0.5">
+                    {player.ownerTrend === 'up' ? (
+                      <TrendingUp size={10} className="text-emerald-500" strokeWidth={3} />
+                    ) : player.ownerTrend === 'down' ? (
+                      <TrendingDown size={10} className="text-rose-500" strokeWidth={3} />
+                    ) : (
+                      <Minus size={10} className="text-slate-400" strokeWidth={3} />
+                    )}
+                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors">{player.ownedBy}</span>
+                  </div>
                 </div>
               </div>
             ))}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Award, ChevronDown, ChevronUp } from 'lucide-react';
+import { Users, Award, ChevronDown, ChevronUp, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TeamCard = ({ team }) => {
@@ -15,20 +15,49 @@ const TeamCard = ({ team }) => {
       team.isUser ? 'ring-2 ring-primary/30 dark:ring-primary/40 bg-primary/[0.02] dark:bg-primary/[0.03] shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(255,255,255,0.06)] scale-[1.02] -translate-y-1' : 'hover:-translate-y-1 hover:shadow-xl'
     }`}>
       <div className="flex justify-between items-start mb-4">
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className={`text-xl font-black truncate transition-all ${team.isUser ? 'text-primary dark:text-primary drop-shadow-[0_2px_10px_rgba(0,0,0,0.05)]' : 'text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-indigo-500 dark:group-hover:to-[#6366f1]'}`}>
-              {team.teamName}
-            </h3>
-            {team.isUser && (
-              <span className="text-[9px] px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-black uppercase tracking-widest shadow-sm flex-shrink-0">
-                Your Team
-              </span>
-            )}
+        <div className="min-w-0 flex-1 flex items-start gap-4">
+          <div className="flex flex-col items-center gap-1">
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm border shadow-sm ${
+              team.rank === 1 ? 'bg-black/10 text-slate-900 border-black/20 dark:bg-white/10 dark:text-white dark:border-white/20' :
+              team.rank <= 3 ? 'bg-black/5 text-slate-700 border-black/10 dark:bg-white/5 dark:text-slate-300 dark:border-white/10' :
+              'bg-black/5 text-slate-500 border-black/5 dark:bg-white/5 dark:text-slate-400 dark:border-white/5'
+            }`}>
+              {team.rank}
+            </div>
+            {/* Trend Indicator */}
+            <div className="flex items-center justify-center">
+              {team.trend === 'up' ? (
+                <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <TrendingUp size={10} className="text-emerald-500" strokeWidth={3} />
+                  <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400">{Math.abs(team.rankDiff || 0)}</span>
+                </div>
+              ) : team.trend === 'down' ? (
+                <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20">
+                  <TrendingDown size={10} className="text-rose-500" strokeWidth={3} />
+                  <span className="text-[9px] font-black text-rose-600 dark:text-rose-400">{Math.abs(team.rankDiff || 0)}</span>
+                </div>
+              ) : (
+                <div className="px-1 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-black/5 dark:border-white/5 opacity-40">
+                  <Minus size={10} className="text-slate-400 dark:text-slate-600" strokeWidth={3} />
+                </div>
+              )}
+            </div>
           </div>
-          <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-[10px]">
-            <Users size={12} />
-            <span>11 Players</span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className={`text-xl font-black truncate transition-all ${team.isUser ? 'text-primary dark:text-primary drop-shadow-[0_2px_10px_rgba(0,0,0,0.05)]' : 'text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-indigo-500 dark:group-hover:to-[#6366f1]'}`}>
+                {team.teamName}
+              </h3>
+              {team.isUser && (
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-black uppercase tracking-widest shadow-sm flex-shrink-0">
+                  Your Team
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-[10px]">
+              <Users size={12} />
+              <span>11 Players</span>
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-end ml-2">

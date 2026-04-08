@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Calendar, ChevronRight, Info, Zap } from 'lucide-react';
+import { Calendar, ChevronRight, Info, Zap, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { matches } from '../data/matches';
 
@@ -19,7 +19,10 @@ const Schedule = ({ teams, hideInternalHeader }) => {
         if (selectedMatch.abbrs.includes(player.iplAbbr)) {
           playersByTeam[player.iplAbbr].push({
             ...player,
-            ownedBy: fTeam.teamName
+            ownedBy: fTeam.teamName,
+            ownerTrend: fTeam.trend,
+            ownerRank: fTeam.rank,
+            ownerRankDiff: fTeam.rankDiff
           });
         }
       });
@@ -138,9 +141,18 @@ const Schedule = ({ teams, hideInternalHeader }) => {
                               </div>
                               <div className="flex items-center justify-between mt-1">
                                 <span className="text-[10px] uppercase font-bold text-slate-500">Owned By</span>
-                                <span className="text-[10px] font-black text-primary hover:text-indigo-500 dark:group-hover:text-blue-400 transition-colors">
-                                  {player.ownedBy}
-                                </span>
+                                <div className="flex items-center gap-1.5 transition-colors">
+                                  {player.ownerTrend === 'up' ? (
+                                    <TrendingUp size={10} className="text-emerald-500" strokeWidth={3} />
+                                  ) : player.ownerTrend === 'down' ? (
+                                    <TrendingDown size={10} className="text-rose-500" strokeWidth={3} />
+                                  ) : (
+                                    <Minus size={10} className="text-slate-400" strokeWidth={3} />
+                                  )}
+                                  <span className="text-[10px] font-black text-primary hover:text-indigo-500 dark:group-hover:text-blue-400 transition-colors">
+                                    {player.ownedBy}
+                                  </span>
+                                </div>
                               </div>
                             </motion.div>
                           ))
